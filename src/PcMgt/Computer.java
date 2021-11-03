@@ -35,6 +35,7 @@ public class Computer {
     public double calculerScore(){
 
         double mico=0,scree=0,brand_perform=0;
+
         switch (this.microprocesseur.getBrand()){
             case DRAGON :brand_perform=50; break;
             case AMD : brand_perform=30;  break;
@@ -43,7 +44,19 @@ public class Computer {
             case OTHER: brand_perform=10; break;
         }
         double memory_capacity=0.6*RAM+0.4*harddisck;
-        return 40*mico+30*scree;
+         mico =this.microprocesseur.getSpeed()*this.microprocesseur.getCorps();
+        switch(this.screen.getType()){
+            case LCD: scree=20; break;
+            case AMOLED: scree=50; break;
+            case LED: scree=30; break;
+            case RETINA:  scree=40; break;
+            case SUPERAMOLED:  scree=60;break;
+            case OTHER: scree=10; break;
+
+        }
+    double scoreScreen=        0.3*screen.getSize()+0.7*scree;
+        brand_perform=scoreScreen+mico;
+        return brand_perform;
     }
 
     public int comparer(Computer c ){
